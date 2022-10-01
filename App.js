@@ -1,12 +1,24 @@
-import React from "react";
-import { View } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, TextInput } from 'react-native';
 
-const App = () => (
-  <>
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }} />
-    <View style={{ flex: 1, width: 100, height: 100, backgroundColor: "red" }}/>
-    <View style={{ flex: 1, width: 100, height: 100, backgroundColor: "blue" }}/>
-  </>
-);
+
+const App = () => {
+  const [name, setName] = useState('');
+
+  return (
+    <View
+      style={{ flex: 1, justifyContent: 'center', backgroundColor: '#ecf0f1' }}
+    >
+      <Text style={{ marginVertical: 16 }}>
+        { name ? 'Hi ${name}' : 'What?' }
+      </Text>
+
+      <TextInput
+        style={{ padding: 8, backgroundColor: '#f5f5f5' }}
+        onChangeText={text => setName(text)}
+      />
+    </View>
+  );
+};
 
 export default App;
