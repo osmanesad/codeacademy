@@ -1,27 +1,38 @@
-import React from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const FeedScreen = () => (
+  <View style={styles.layout}>
+    <Text style={styles.title}>Feed</Text>
+  </View>
+);
+
+const Stack = createStackNavigator();
+
+export const AppNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Feed" component={FeedScreen} />
+  </Stack.Navigator>
+);
 
 const App = () => (
-  <View style={styles.layout}>
-    <Pressable>{(state) => <Box pressed={state.pressed} />}</Pressable>
-  </View>
+  <NavigationContainer>
+    <AppNavigator />
+  </NavigationContainer>
 );
 
 export default App;
 
-export const Box = (props) => (
-  <View style={[styles.box, props.pressed && { backgroundColor: "blue" }]} />
-);
-
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   layout: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  box: {
-    width: 100,
-    height: 100,
-    backgroundColor: "red",
+  title: {
+    fontSize: 32,
+    marginBottom: 16,
   },
 });
