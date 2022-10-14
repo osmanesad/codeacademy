@@ -1,7 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+const OverviewScreen = () => (
+  <View style={styles.layout}>
+    <Text style={styles.title}>Overview</Text>
+  </View>
+);
+
+const ProfileNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Overview" component={OverviewScreen} />
+  </Stack.Navigator>
+);
+
+// Add the new stack navigator above this line
 
 const FeedScreen = () => (
   <View style={styles.layout}>
@@ -9,12 +26,13 @@ const FeedScreen = () => (
   </View>
 );
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export const AppNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Feed" component={FeedScreen} />
-  </Stack.Navigator>
+  <Tab.Navigator>
+    <Tab.Screen name="Feed" component={FeedScreen} />
+    <Tab.Screen name="Profile" component={ProfileNavigator} />
+  </Tab.Navigator>
 );
 
 const App = () => (
